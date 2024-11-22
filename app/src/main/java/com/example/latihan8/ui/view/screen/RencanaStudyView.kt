@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -95,7 +96,19 @@ fun RencanaStudiView(
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
+                Text(
+                    text = "Masukkan Data Kamu"
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 19.sp
+                )
+                Text(
+                    text = "Isi Sesuai data yang kamu daftarkan"
+                    fontWeight = FontWeight.Light
+                )
+                Spacer(modifier = Modifier.padding(8.dp))
+                OutlinedTextField(
 
+                )
             }
         }
     }
