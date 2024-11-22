@@ -1,9 +1,11 @@
 package com.example.latihan8.ui.view.screen
 
+import android.R.attr.onClick
 import android.graphics.Color
 import android.media.Image
 import android.widget.Button
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -145,13 +147,20 @@ fun RencanaStudiView(
                         )
                     },
                     keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Text,
-                        imeAction = ImeAction.Next
+                        keyboardType = KeyboardType.Email,
+                        imeAction = ImeAction.Done
                     ),
                     singleLine = true,
                     shape = RoundedCornerShape(50.dp)
                 )
-
+                Spacer(modifier = Modifier.padding(16.dp))
+                Row (
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ){
+                    Button(onClick= {onBackButtonClicked()}){
+                  }
+                }
             }
         }
     }
