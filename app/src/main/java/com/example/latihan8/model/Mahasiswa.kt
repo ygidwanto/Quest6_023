@@ -1,9 +1,8 @@
 package com.example.latihan8.model
 
-class Mahasiswa (
-    val nim: String ="",
+
+data class Mahasiswa(
     val nama: String = "",
-    val email: String = "",
+    val nim: String = "",
+    val email: String = ""
 )
-
-
