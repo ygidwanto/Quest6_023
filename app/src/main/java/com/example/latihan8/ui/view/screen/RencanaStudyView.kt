@@ -159,7 +159,11 @@ fun RencanaStudiView(
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ){
                     Button(onClick= {onBackButtonClicked()}){
-                  }
+                        Text(text = "Kembali")
+                    }
+                    Button(onClick= {onBackButtonClicked(listData)}){
+                        Text(text = "Simpan")
+                    }
                 }
             }
         }
