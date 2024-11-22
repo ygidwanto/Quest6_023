@@ -2,6 +2,8 @@ package com.example.latihan8.ui.widget
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import java.lang.reflect.Modifier
 
 
@@ -14,5 +16,8 @@ fun DynamicSelectTextField(
     onValueChangedEvent: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    var expanded by remember {
+        mutableStateOf(false)
+    }
 
 }
