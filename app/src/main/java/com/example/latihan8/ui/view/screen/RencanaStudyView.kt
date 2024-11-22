@@ -1,5 +1,6 @@
 package com.example.latihan8.ui.view.screen
 
+import android.graphics.Color
 import android.media.Image
 import android.widget.Button
 import androidx.compose.foundation.background
@@ -58,10 +59,19 @@ fun RencanaStudiView(
                     .size(50.dp)
             )
             Spacer(modifier = Modifier.padding(start = 16.dp))
-            Column (modifier = Modifier.weight(1f)){
-                Text()
+            Column {
+                Text(
+                    text = "Universitas Muhammadiyah Yogyakarta",
+                    color = Color.Red,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "Unggul dan Islami",
+                    color = Color.Red,
+                    fontWeight = FontWeight.Light
+                )
             }
-
         }
 
     }
