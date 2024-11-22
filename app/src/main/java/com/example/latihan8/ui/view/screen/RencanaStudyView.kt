@@ -1,34 +1,23 @@
 package com.example.latihan8.ui.view.screen
 
-import android.R.attr.onClick
-import android.graphics.Color
-import android.media.Image
-import android.widget.Button
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -36,44 +25,41 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.latihan8.R
 import com.example.latihan8.model.Mahasiswa
-import com.example.latihan8.model.RencanaStudi
-import java.nio.file.WatchEvent
 
 @Composable
 fun RencanaStudiView(
     mahasiswa: Mahasiswa,
-    onSubmitButtonClicked: (MutableList<String>) -> Unit,
+    onSubmitButtonClicked: (List<String>) -> Unit,
     onBackButtonClicked: () -> Unit
-){
-    var chosenDropdown by remember {
-        mutableStateOf(
-            value = " "
-        )
-    }
-    var checked by remember { mutableStateOf(false) }
-    var pilihanKelas by remember {
-        mutableStateOf(value: " ")
-    }
-    var listData: MutableList<String> = mutableListOf(chosenDropdown, pilihanKelas)
-    Column (
+) {
+    var nim by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var chosenDropdown by remember { mutableStateOf(" ") }
+    var pilihanKelas by remember { mutableStateOf(" ") }
+    val listData = listOf(chosenDropdown, pilihanKelas)
+
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(color = colorResource(id = R.color.primary))
-    ){
-        Row (
+    ) {
+        // Header Row
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp), verticalAlignment = Alignment.CenterVertically
-            ){
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Image(
-                painter = painterResource(id = R.drawable.img),
-                contentDescription = "",
+                painter = painterResource(id = R.drawable.umy),
+                contentDescription = null,
                 modifier = Modifier
                     .clip(shape = CircleShape)
                     .size(50.dp)
             )
-            Spacer(modifier = Modifier.padding(start = 16.dp))
+            Spacer(modifier = Modifier.width(16.dp))
             Column {
                 Text(
                     text = "Universitas Muhammadiyah Yogyakarta",
@@ -88,62 +74,67 @@ fun RencanaStudiView(
                 )
             }
         }
-        Spacer(modifier = Modifier.padding(top = 16.dp))
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Form Input
         Box(
             modifier = Modifier
                 .background(
                     color = Color.White,
-                    shape = RoundedCornerShape(
-                        topEnd = 15.dp
-                        topStart = 15.dp
-                    )
+                    shape = RoundedCornerShape(topStart = 15.dp, topEnd = 15.dp)
                 )
-                .fillMaxSize(),
-        ){
-            Column (
+                .fillMaxSize()
+        ) {
+            Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
-            ){
+            ) {
                 Text(
-                    text = "Masukkan Data Kamu"
+                    text = "Masukkan Data Kamu",
                     fontWeight = FontWeight.Bold,
                     fontSize = 19.sp
                 )
                 Text(
-                    text = "Isi Sesuai data yang kamu daftarkan"
+                    text = "Isi Sesuai data yang kamu daftarkan",
                     fontWeight = FontWeight.Light
                 )
-                Spacer(modifier = Modifier.padding(8.dp))
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // Input NIM
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
                     value = nim,
-                    onValueChange = {nim = it},
-                    label = {Text(text = "Nomor Induk Mahasiswa")},
+                    onValueChange = { nim = it },
+                    label = { Text(text = "Nomor Induk Mahasiswa") },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Filled.Person,
-                            contentDescription = ""
+                            contentDescription = null
                         )
                     },
                     keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Text,
+                        keyboardType = KeyboardType.Number,
                         imeAction = ImeAction.Next
                     ),
                     singleLine = true,
                     shape = RoundedCornerShape(50.dp)
                 )
-                Spacer(modifier = Modifier.padding(1.dp))
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // Input Email
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth(),
                     value = email,
-                    onValueChange = {email = it},
-                    label = {Text(text = "Email Mahasiswa")},
+                    onValueChange = { email = it },
+                    label = { Text(text = "Email Mahasiswa") },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Filled.Email,
-                            contentDescription = ""
+                            contentDescription = null
                         )
                     },
                     keyboardOptions = KeyboardOptions(
@@ -153,15 +144,18 @@ fun RencanaStudiView(
                     singleLine = true,
                     shape = RoundedCornerShape(50.dp)
                 )
-                Spacer(modifier = Modifier.padding(16.dp))
-                Row (
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Buttons
+                Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
-                ){
-                    Button(onClick= {onBackButtonClicked()}){
+                ) {
+                    Button(onClick = { onBackButtonClicked() }) {
                         Text(text = "Kembali")
                     }
-                    Button(onClick= {onBackButtonClicked(listData)}){
+                    Button(onClick = { onSubmitButtonClicked(listData) }) {
                         Text(text = "Simpan")
                     }
                 }
