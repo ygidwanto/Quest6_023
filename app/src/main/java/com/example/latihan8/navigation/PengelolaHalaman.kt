@@ -22,7 +22,7 @@ enum class Halaman {
     Splash,
     Mahasiswa,
     Matakuliah,
-    Tampil
+    Tampil,
 }
 
 @Composable
